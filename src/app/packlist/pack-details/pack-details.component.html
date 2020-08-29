@@ -1,0 +1,17 @@
+<table>
+  <tr>
+    <th>Card</th>
+    <th>Colors</th>
+    <th>Price ($)</th>
+  </tr>
+  <tr *ngFor="let card of cards" (click)="selectCard(card)">
+    <td>{{card.name}}</td>
+    <td>{{card.colors}}</td>
+    <td>{{card.price}}</td>
+  </tr>
+</table>
+<br/>
+
+<h3>
+  Total: ${{totalPrice}}
+</h3>

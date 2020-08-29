@@ -1,16 +1,28 @@
-<p>packlist works!</p>
-<img class="fullBg" [src]="page.image">
+<p>Packs submitted</p>
 
-<md-card>
-  <md-card-header>
-    <md-card-title>
-      <h1>{{page.title}}</h1>
-    </md-card-title>
-    <md-card-subtitle>
-      {{page.subtitle}}
-    </md-card-subtitle>
-  </md-card-header>
-  <md-card-content>
-    {{page.content}}
-  </md-card-content>
-</md-card>
+<table style="width:100%">
+  <tr>
+    <th>#</th>
+    <th>Pack name</th>
+    <th>Colors</th>
+    <th>Author</th>
+    <th>Price ($)</th>
+  </tr>
+  <tr *ngFor="let pack of packs" (click)="selectPack(pack)">
+    <td>{{pack.id}}</td>
+    <td>{{pack.name}}</td>
+    <td>{{pack.colors}}</td>
+    <td>{{pack.submitterName}}</td>
+    <td>{{pack.price}}</td>
+  </tr>
+</table>
+<br/>
+
+<button class="button deck-submit-button" (click)="setSubmitDeckClicked(true)">Submit pack</button>
+<br/>
+<br/>
+<br/>
+<app-pack-details *ngIf="selectedPack != null" [cards]="selectedPack.cards"></app-pack-details>
+<app-pack-submit *ngIf="submitDeckClicked"></app-pack-submit>
+
+<!--onclick, open overlay page with 20 fields, cancel, and submit button-->

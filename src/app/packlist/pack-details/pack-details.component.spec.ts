@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeckSubmitComponent } from './deck-submit.component';
+import { PackDetailsComponent } from './pack-details.component';
 
-describe('DeckSubmitComponent', () => {
-  let component: DeckSubmitComponent;
-  let fixture: ComponentFixture<DeckSubmitComponent>;
+describe('PackDetailsComponent', () => {
+  let component: PackDetailsComponent;
+  let fixture: ComponentFixture<PackDetailsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DeckSubmitComponent ]
+      declarations: [ PackDetailsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeckSubmitComponent);
+    fixture = TestBed.createComponent(PackDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

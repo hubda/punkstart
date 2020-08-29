@@ -1,24 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { PacklistComponent } from './packlist/packlist.component';
-import { DeckSubmitComponent } from './deck-submit/deck-submit.component';
-import { MdButtonModule, MdCardModule, MdToolbarModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PackSubmitComponent } from './packlist/pack-submit/pack-submit.component';
+import { PackDetailsComponent } from './packlist/pack-details/pack-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PacklistComponent,
-    DeckSubmitComponent
+    PackSubmitComponent,
+    PackDetailsComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    MdToolbarModule,
-    MdButtonModule,
-    MdCardModule
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
