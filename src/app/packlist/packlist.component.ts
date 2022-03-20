@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {Pack} from '../types';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Card, Pack} from '../types';
+import {PACKS} from './packlist';
+import {PackSubmitComponent} from './pack-submit/pack-submit.component';
+import * as CardList from '../../carddatabase/AtomicCards.json';
+// import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import {Observable} from "rxjs/internal/Observable";
 
 @Component({
   selector: 'app-packlist',
@@ -8,69 +13,57 @@ import {Pack} from '../types';
 })
 export class PacklistComponent implements OnInit {
 
-  packs: Pack[] = [
-    {
-      id: 1,
-      name: 'Dabbing',
-      url: 'google.com',
-      colors: 'R',
-      submitterName: 'Dan Huber',
-      price: '5.43',
-      cards: [
-        {
-          name: 'test 1',
-          colors: 'R',
-          price: '1'
-        },
-        {
-          name: 'test 2',
-          colors: 'R',
-          price: '1'
-        }
-      ]
-    },
-    {
-      id: 2,
-      name: 'Just the Two of Us',
-      url: 'google.com',
-      colors: 'WUBRG',
-      submitterName: 'Andy',
-      price: '100',
-      cards: [
-        {
-          name: 'test 3',
-          colors: 'R',
-          price: '1'
-        },
-        {
-          name: 'test 4',
-          colors: 'R',
-          price: '1'
-        }
-      ]
-    }
-  ];
-
+  @ViewChild(PackSubmitComponent) packSubmitComponent: PackSubmitComponent;
+  packs: Pack[] = PACKS;
+  newPack: Pack;
   selectedPack: Pack;
   submitDeckClicked: boolean = false;
+  cardList: Card[];
+  // _jsonURL: '../../carddatabase/AtomicCards.json';
 
   constructor() {
   }
 
   ngOnInit(): void {
+    console.log('cardDatabase');
+    console.log(CardList.default.data.length);
+    console.log(CardList.default.data);
+    this.cardList = CardList.default.data;
   }
 
   setSubmitDeckClicked(value: boolean): void {
     this.submitDeckClicked = value;
   }
 
+  cancelSubmitDeck(): void {
+    this.submitDeckClicked = null;
+  }
+
   selectPack(pack: Pack): void {
     console.log('pack: ' + pack);
-    this.selectedPack = pack;
+    if (this.selectedPack === pack) {
+      this.deselectPack();
+    } else {
+      this.selectedPack = pack;
+    }
   }
 
   deselectPack(): void {
     console.log('deselecting pack');
     this.selectedPack = null;
   }
+
+  submitPack(): void {
+    this.newPack = this.packSubmitComponent.submitPack();
+    this.newPack.id = this.packs.length + 1;
+    console.log('newPack: ' + this.newPack);
+    this.packs.push(this.newPack);
+  }
+
+  // public getJSON(): Observable<any> {
+  //   return this.http.get(this._jsonURL)
+  //     .map((response:any) => response.json())
+  //     .catch((error:any) => console.log(error));
+  //
+  // }
 }

@@ -5,6 +5,9 @@
     "outDir": "../out-tsc/e2e",
     "module": "commonjs",
     "target": "es2018",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
     "types": [
       "jasmine",
       "jasminewd2",

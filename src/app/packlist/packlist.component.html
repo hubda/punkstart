@@ -24,5 +24,7 @@
 <br/>
 <app-pack-details *ngIf="selectedPack != null" [cards]="selectedPack.cards"></app-pack-details>
 <app-pack-submit *ngIf="submitDeckClicked"></app-pack-submit>
+<button *ngIf="submitDeckClicked" class="button submit-button" (click)="submitPack()">Submit</button>
+<button *ngIf="submitDeckClicked" class="button cancel-button" (click)="cancelSubmitDeck()">Cancel</button>
 
 <!--onclick, open overlay page with 20 fields, cancel, and submit button-->
